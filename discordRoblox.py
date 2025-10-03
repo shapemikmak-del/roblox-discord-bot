@@ -20,8 +20,8 @@ threading.Thread(target=run_flask).start()
 
 # ------------ Discord Bot ------------ #
 intents = discord.Intents.default()
-
-intents.messages = True      # מאפשר לקרוא ולשלוח הודעות
+intents.message_content = True  # מאפשר קריאת תוכן ההודעות
+intents.messages = True
 bot = commands.Bot(command_prefix="!", intents=intents)
 
 items = {
