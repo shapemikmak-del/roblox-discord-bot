@@ -54,10 +54,7 @@ async def כמה(ctx, *, שם_פריט):
         user_usage[user_id] = 0
 
     is_premium = False
-    for role in ctx.author.roles:
-        if role.name.lower() == "premium":
-            is_premium = True
-            break
+
 
     limit = DAILY_LIMIT_PREMIUM if is_premium else DAILY_LIMIT_FREE
 
