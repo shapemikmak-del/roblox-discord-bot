@@ -20,13 +20,14 @@ threading.Thread(target=run_flask).start()
 
 # ------------ Discord Bot ------------ #
 intents = discord.Intents.default()
-intents.message_content = True  # מאפשר קריאת תוכן ההודעות
-intents.messages = True
+intents.members = True       # מאפשר לבוט לקרוא רשימת משתמשים ו-roles
+intents.messages = True      # מאפשר לקרוא ולשלוח הודעות
 bot = commands.Bot(command_prefix="!", intents=intents)
 
+
 items = {
-    "פיל": -1000,
-    "פרה": -12,
+    "פיל":  1000,
+    "פרה": 12,
     "אריה": 50,
     "חמור": 20
 }
@@ -54,7 +55,10 @@ async def כמה(ctx, *, שם_פריט):
         user_usage[user_id] = 0
 
     is_premium = False
-
+    for role in ctx.author.roles:
+        if role.name.lower() == "premium":
+            is_premium = True
+            break
 
     limit = DAILY_LIMIT_PREMIUM if is_premium else DAILY_LIMIT_FREE
 
